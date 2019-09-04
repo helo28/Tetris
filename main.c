@@ -7,8 +7,9 @@
 
 
 #include "tetris.h"
+#include "display.h"
 
-//Parte principal do programa, responsavel por implementar e chamar as funçoes auxiliares
+//Parte principal do programa, responsável por implementar e chamar as funções auxiliares
 int main() {
 
     char matrix [ROWS][COLUMNS];
@@ -21,15 +22,20 @@ int main() {
     //inicializando a matriz
     init(matrix);
 
+    //apagar (esconder) o cursor da tela
+
+    ShowConsoleCursor(0);
+    system("cls");
+
     while(1){
 
-        system("cls");
+        gotoxy(0,0);
 
         matrix[posI][posJ] = '@';
 
         printMatrix(matrix);
 
-        matrix[posI][posJ] = ' ';
+        matrix[posI][posJ] = ' '; 
         
         if(posJ < COLUMNS) posJ++;
         
