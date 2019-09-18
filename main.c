@@ -16,10 +16,10 @@ int main() {
     int posI, posJ;
 
     //inicializando posição do personagem
-    posI = ROWS/2;
+    posI = 0;
     posJ = COLUMNS/2;
 
-    //inicializando a matriz
+    //inicializando a matriz (espaço vazio)
     init(matrix);
 
     //apagar (esconder) o cursor da tela
@@ -27,18 +27,23 @@ int main() {
     ShowConsoleCursor(0);
     system("cls");
 
+    //Animação do jogo
     while(1){
 
         gotoxy(0,0);
 
+        //posicionar @ na tela
         matrix[posI][posJ] = '@';
 
+        //mostra a matriz na tela
         printMatrix(matrix);
 
+        //faz a posição anterior do @ apagar
         matrix[posI][posJ] = ' '; 
         
-        if(posJ < COLUMNS) posJ++;
-        
+        //faz a posição da @ ir para o lado
+        if(posI < (ROWS-1)) posI++;
+            
     }
 
     system("pause");
