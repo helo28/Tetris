@@ -23,6 +23,8 @@
 #define RIGHT 77
 #define TECLA_A 97
 #define TECLA_D 100
+#define TECLA_AA 65
+#define TECLA_DD 68
 
 /* 
     Inicializa a matriz principal com 'espaços vazios'

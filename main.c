@@ -52,10 +52,12 @@ int main() {
 
         switch(keypressed){
             // Aqui dois cases juntos estão realizando a mesma função uma para a direita e outra para a esquerda
+            case TECLA_AA:
             case TECLA_A: //vai mover a @ para a esquerda (usa a tecla 'a') o numero 97 é da tabela ASCII
             case LEFT: 
                 if(posJ > 0) posJ--; //vai mover a @ para a esquerda (usa a tecla 'seta esquerda <-') o numero 75 é da tabela ASCII
-            break;  
+            break;
+            case TECLA_DD:  
             case TECLA_D: //vai mover a @ para a direita (usa a tecla 'd') o numero 100 é da tabela ASCII
             case RIGHT: 
                 if(posJ < (COLUMNS-1)) posJ++;  //vai mover a @ para a direita (usa a tecla 'seta direita ->') o numero 77 é da tabela ASCII
