@@ -31,7 +31,7 @@ void printMatrix(char matrix[ROWS][COLUMNS]){
         printf("\t\t\t");
         //Linha de cima
             for(j=0; j<COLUMNS+2; j++){
-            printf("*");
+                printf("*");
     }
 
     printf("\n");
@@ -54,4 +54,5 @@ void printMatrix(char matrix[ROWS][COLUMNS]){
     }
         printf("\n");
 
+        
 }
