@@ -21,7 +21,7 @@ int main() {
     tijolo.i = 0;
     tijolo.j = COLUMNS/2;
     tijolo.tipo = TIPO_I;
-    tijolo.orientacao = ORIENTACAO_UP;
+    tijolo.orientacao = ORIENTACAO_LEFT;
     tijolo.width = 1;
     tijolo.height = 4;
 
@@ -43,30 +43,14 @@ int main() {
         #endif
 
         //posicionar @ na tela
-        switch(tijolo.orintacao){
-            case ORIENTACAO_UP:
-                if(tijolo.i-3>=0) matrix[tijolo.i-3][tijolo.j] = PIXEL;
-                if(tijolo.i-2>=0) matrix[tijolo.i-2][tijolo.j] = PIXEL;
-                if(tijolo.i-1>=0) matrix[tijolo.i-1][tijolo.j] = PIXEL;
-                matrix[tijolo.i][tijolo.j] = PIXEL;
-            break;
-            
-        }    
+        drawBar(matrix, tijolo, PIXEL);
+        
         //mostra a matriz na tela
         printMatrix(matrix);
 
         //faz a posição anterior do @ apagar
-        switch(tijolo.orintacao){
-            case ORIENTACAO_UP:
-                if(tijolo.i-3>=0) matrix[tijolo.i-3][tijolo.j] = EMPTY; 
-                if(tijolo.i-2>=0) matrix[tijolo.i-2][tijolo.j] = EMPTY;
-                if(tijolo.i-1>=0) matrix[tijolo.i-1][tijolo.j] = EMPTY;
-                matrix[tijolo.i][tijolo.j] = EMPTY;
-                break;
-        case ORIENTACAO_LEFT:
-        
-
-        }        
+        drawBar(matrix, tijolo, EMPTY);
+                
         //faz a posição da @ ir para o lado direito
         if(tijolo.i < (ROWS-1)) tijolo.i++;
             
@@ -87,6 +71,12 @@ int main() {
             case RIGHT: 
                 if(tijolo.j < (COLUMNS-1)) tijolo.j++;  //vai mover a @ para a direita (usa a tecla 'seta direita ->') o numero 77 é da tabela ASCII
             break;
+            //Usando espaço para trocar ORIENTAÇÃO (deitado em pé)
+            case TECLA_ESPACO:
+                if(tijolo.orientacao== ORIENTACAO_RIGHT)
+                    tijolo.orientacao = ORIENTACAO_UP;
+                else
+                    tijolo.orientacao++;
         }
 
     }

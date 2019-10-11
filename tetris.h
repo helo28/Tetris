@@ -25,11 +25,12 @@
 #define TECLA_D 100
 #define TECLA_AA 65
 #define TECLA_DD 68
+#define TECLA_ESPACO 32
 
 //Defines de orientação das peças
 #define ORIENTACAO_UP 1
-#define ORIENTACAO_DOWN 2
-#define ORIENTACAO_LEFT 3 
+#define ORIENTACAO_LEFT 2
+#define ORIENTACAO_DOWN 3
 #define ORIENTACAO_RIGHT 4
 
 // Criação de tipos de peças
@@ -63,6 +64,13 @@ typedef struct{
 
 void init (char matrix[ROWS][COLUMNS]);
 
-//Mostra o conteudo da matriz principal na tela do computador
+/*
+    Mostra o conteudo da matriz principal na tela do computador
+*/
 
 void printMatrix(char matrix[ROWS][COLUMNS]);
+
+// Desenhar uma BARRA usando o simbolo de caractere ASCII passando por parâmetro
+void drawBar(char matrix[ROWS][COLUMNS], Bloco barra, int simbolo);
+
+  
