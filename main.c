@@ -22,8 +22,8 @@ int main() {
     tijolo.j = COLUMNS/2;
     tijolo.tipo = TIPO_I;
     tijolo.orientacao = ORIENTACAO_LEFT;
-    tijolo.width = 1;
-    tijolo.height = 4;
+    tijolo.width = 5; //largura
+    tijolo.height = 1; //altura
 
     //inicializando a matriz (espaço vazio)
     init(matrix);
@@ -39,7 +39,8 @@ int main() {
         gotoxy(0,0);
 
         #if DEBUG == 1 
-            printf("@ = (%d, %d \n", tijolo.i, tijolo.j); 
+            printf("@ = (%d, %d)\n", tijolo.i, tijolo.j);
+            printf("dimensao = (%d, %d)\n", tijolo.width, tijolo.height);
         #endif
 
         //posicionar @ na tela
@@ -64,12 +65,12 @@ int main() {
             case TECLA_AA: //Maiusculo
             case TECLA_A: //vai mover a @ para a esquerda (usa a tecla 'a') o numero 97 é da tabela ASCII
             case LEFT: 
-                if(tijolo.j > 0) tijolo.j--; //vai mover a @ para a esquerda (usa a tecla 'seta esquerda <-') o numero 75 é da tabela ASCII
+                if((tijolo.j - (tijolo.width/2)) > 0) tijolo.j--; //vai mover a @ para a esquerda (usa a tecla 'seta esquerda <-') o numero 75 é da tabela ASCII
             break;
             case TECLA_DD:  //Maiusculo
             case TECLA_D: //vai mover a @ para a direita (usa a tecla 'd') o numero 100 é da tabela ASCII
             case RIGHT: 
-                if(tijolo.j < (COLUMNS-1)) tijolo.j++;  //vai mover a @ para a direita (usa a tecla 'seta direita ->') o numero 77 é da tabela ASCII
+                if((tijolo.j + (tijolo.width/2)) < (COLUMNS-1)) tijolo.j++;  //vai mover a @ para a direita (usa a tecla 'seta direita ->') o numero 77 é da tabela ASCII
             break;
             //Usando espaço para trocar ORIENTAÇÃO (deitado em pé)
             case TECLA_ESPACO:
@@ -77,6 +78,17 @@ int main() {
                     tijolo.orientacao = ORIENTACAO_UP;
                 else
                     tijolo.orientacao++;
+
+                // Inverte as dimensões do tijolo
+                int aux = tijolo.width;
+                tijolo.width = tijolo.height;
+                tijolo.height = aux;
+
+                // Resolvendo BUG de PEÇA ATRAVESSANDO A FRONTEIRA
+                if(tijolo.j < (tijolo.width/2))
+                    tijolo.j = tijolo.width/2;
+                else if (tijolo.j > COLUMNS - (tijolo.width/2)-1) //DIREITA
+                    tijolo.j = COLUMNS - (tijolo.width/2) -1; //Direita
         }
 
     }
