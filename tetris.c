@@ -80,3 +80,47 @@ void drawBar(char matrix[ROWS][COLUMNS], Bloco barra, int simbolo){
     }
   }
         
+void initBar (Bloco *barra){
+    barra->i = 0;
+    barra->j = COLUMNS/2;
+    barra->tipo = TIPO_I;
+    barra->orientacao = ORIENTACAO_LEFT;
+    barra->width = 5; //largura
+    barra->height = 1; //altura
+
+    #if DEBUG == 1
+        printf("posI: %d posJ: %d \n", barra->i, barra->j);
+        system("pause");
+    #endif
+
+}
+
+
+void rotate(Bloco *bloco){
+    if(bloco->orientacao== ORIENTACAO_RIGHT)
+        bloco->orientacao = ORIENTACAO_UP;
+    else
+        bloco->orientacao++;
+
+    // Inverte as dimensões do tijolo
+    int aux = bloco->width;
+    bloco->width = bloco->height;
+    bloco->height = aux;
+
+    // Resolvendo BUG de PEÇA ATRAVESSANDO A FRONTEIRA
+    if(bloco->j < (bloco->width/2))
+        bloco->j = bloco->width/2;
+     else if (bloco->j > COLUMNS - (bloco->width/2)-1) //DIREITA
+        bloco->j = COLUMNS - (bloco->width/2) -1; //Direita
+}
+
+//Verifica COLISÃO de blocos
+int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra){
+    int retorno = 0;
+
+        //VERIFICA COLISÃO COM A BASE
+        if((barra.i + barra.height/2) >= (ROWS-1))
+            retorno = 1;
+
+    return retorno;
+}
