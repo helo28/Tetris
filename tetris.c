@@ -122,5 +122,19 @@ int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra){
         if((barra.i + barra.height/2) >= (ROWS-1))
             retorno = 1;
 
+    //Verificando colisão ENTRE PEÇAS
+    // int t o T é de tolerância
+    int t1 = barra.height / 2;
+    if(matrix[barra.i + t1 + 1][barra.j] != EMPTY) // Vendo que Houve colisão
+        retorno = 1;
+
+    int t2 = barra.width / 2;
+
+    if(matrix[barra.i+1][barra.j + t2] != EMPTY)
+        retorno = 1;
+
+    if(matrix[barra.i+1][barra.j + t2] != EMPTY)
+        retorno = 1;
+        
     return retorno;
 }
