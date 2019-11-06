@@ -62,12 +62,16 @@ int main() {
             case TECLA_AA: //Maiusculo
             case TECLA_A: //vai mover a @ para a esquerda (usa a tecla 'a') o numero 97 é da tabela ASCII
             case LEFT: 
-                if((tijolo.j - (tijolo.width/2)) > 0) tijolo.j--; //vai mover a @ para a esquerda (usa a tecla 'seta esquerda <-') o numero 75 é da tabela ASCII
+                if((tijolo.j - (tijolo.width/2)) > 0) 
+                    if(matrix[tijolo.i][tijolo.j - (tijolo.width/2) - 1] == EMPTY)
+                        tijolo.j--; //vai mover a @ para a esquerda (usa a tecla 'seta esquerda <-') o numero 75 é da tabela ASCII
             break;
             case TECLA_DD:  //Maiusculo
             case TECLA_D: //vai mover a @ para a direita (usa a tecla 'd') o numero 100 é da tabela ASCII
             case RIGHT: 
-                if((tijolo.j + (tijolo.width/2)) < (COLUMNS-1)) tijolo.j++;  //vai mover a @ para a direita (usa a tecla 'seta direita ->') o numero 77 é da tabela ASCII
+                if((tijolo.j + (tijolo.width/2)) < (COLUMNS-1)) 
+                    if(matrix[tijolo.i][tijolo.j + (tijolo.width/2) + 1] == EMPTY)
+                tijolo.j++;  //vai mover a @ para a direita (usa a tecla 'seta direita ->') o numero 77 é da tabela ASCII
             break;
 
             //Usando espaço para trocar ORIENTAÇÃO (deitado em pé)
