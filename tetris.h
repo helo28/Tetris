@@ -46,6 +46,11 @@
 #define PIXEL 219
 #define EMPTY 32 
 
+//Configurações do mecanismo de colisão
+#define CHECK_SIDE 1
+#define UNCHECK_SIDE 0
+#define NONE 0
+
 //Estrutura padrão de componentes (STRUCT) tamanho peças
 typedef struct{
     int i;  // POSIÇÃO NAS LINHAS DA MATRIZ
@@ -81,3 +86,6 @@ void rotate(Bloco *bloco);
 
 //Verifica COLISÃO de blocos
 int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra);
+
+//Verifica COLISÃO de Barras
+int collisionBar(char matrix[ROWS][COLUMNS], Bloco barra, int collideSides, int side);

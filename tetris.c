@@ -115,7 +115,7 @@ void rotate(Bloco *bloco){
 }
 
 //Verifica COLISÃO de blocos
-int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra){
+int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra, int collideSides, int side){
     int retorno = 0;
 
         //VERIFICA COLISÃO COM A BASE
@@ -135,5 +135,61 @@ int collisionDetect(char matrix[ROWS][COLUMNS], Bloco barra){
     if(matrix[barra.i+1][barra.j + t2] != EMPTY)
         retorno = 1;
         
+    return retorno;
+}
+
+//Verifica COLISÃO de BARRAS
+int collisionBar(char matrix[ROWS][COLUMNS], Bloco barra){
+    int retorno = 0;
+
+        //VERIFICA COLISÃO COM A BASE
+        if((barra.i + 1) >= ROWS)
+            retorno = 1;
+
+    //Verificando colisão da Base da Barra com outras peças
+    // verifica a linha de i mais 1 abaixo
+    if(matrix[barra.i + 1][barra.j] != EMPTY) // Vendo que Houve colisão  J é a base da peça
+        retorno = 1;
+
+    //Colisão com Base Horizontal
+    int t2 = barra.width / 2;
+
+    if(matrix[barra.i+1][barra.j + t2] != EMPTY)
+        retorno = 1;
+
+    if(matrix[barra.i+1][barra.j + t2] != EMPTY)
+        retorno = 1;
+    
+    //Colisão Lateral Horizontal   t2 é a distância entre o ponto principal da peça (o seu centro) até o seu final
+    if(collideSides==CHECK_SIDE && (barra.orientacao == ORIENTACAO_LEFT || barra.orientacao == ORIENTACAO_RIGHT)){
+        if(side==RIGHT && matrix[barra.i][barra.j + t2 + 1] != EMPTY)
+            retorno = 1;
+        if(side==RIGHT && barra.j + t2 + 1 >= COLUMNS)
+            retorno = 1;
+
+        if(side==LEFT && matrix[barra.i][barra.j - t2 - 1] != EMPTY)
+            retorno = 1;
+        if(side==LEFT && barra.j - t2 - 1 < 0)
+            retorno = 1;
+    }
+
+    //Colisão lateral Vertical
+    if(collideSides==CHECK_SIDE && (barra.orientacao == ORIENTACAO_UP || barra.orientacao == ORIENTACAO_DOWN)) {
+        int i;
+        for(i=0; i<barra.height; i++){
+            //Verificando se ocorreu colisão lateral com restos de outras peças
+            if(side==RIGHT && matrix[barra.i-i][barra.j + 1] != EMPTY)
+                retorno = 1;
+
+            if(side=LEFT && matrix[barra.i-i][barra.j - 1] != EMPTY)
+                retorno = 1;
+        }
+
+        if(side==RIGHT && barra.j + 1 >= COLUMNS )
+            retorno = 1;
+        
+        if(side==LEFT && barra.j)
+    }
+    
     return retorno;
 }
